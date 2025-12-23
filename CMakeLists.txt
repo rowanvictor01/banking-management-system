@@ -1,13 +1,18 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.10)
+project(Banking-Management-System C)
 
-project(Banking Management System)
+# Set C Standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
-add_executable(bankc)
+# Collect all source files
+file(GLOB SOURCES "src/*.c")
 
-target_sources(bankc
-	PRIVATE
-	./src/main.c
-	./src/utils.c
-	./src/account.c
-	./src/menu.c
-)
+# Create executable
+add_executable(bankc ${SOURCES})
+
+# Add include directory
+target_include_directories(bankc PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
+# Set output directory
+set_target_properties(bankc PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
